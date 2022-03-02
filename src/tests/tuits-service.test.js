@@ -2,7 +2,7 @@ import {
     createTuit, deleteTuit,
     findTuitById, findAllTuits, deleteTuitByContent
 } from "../services/tuits-service";
-import {createUser, deleteUsersByUsername, findUserById} from "../services/users-service";
+import {createUser, deleteUsersByUsername, findAllUsers, findUserById} from "../services/users-service";
 
 describe('can create tuit with REST API', () => {
     // sample user to insert
@@ -121,4 +121,64 @@ describe('can retrieve a tuit by their primary key with REST API', () => {
 
 describe('can retrieve all tuits with REST API', () => {
     // TODO: implement this
+    // sample user we'll insert to create tuits
+    const nasa = {
+        username: 'nasa',
+        password: 'nasa426',
+        email: 'nasa@aliens.com'
+    };
+    // sample tuits we'll insert to then retrive
+    const tuitContents = [
+        "This is the first tuit",
+        "This is the second tuit",
+        "This is the third tuit"
+    ];
+
+    // setup data before test
+    beforeAll(async () => {
+            // use Promise.all to wait until all promises(delete user operations) are done
+            {
+                const user = await createUser(nasa)
+                //add id to nasa
+                nasa._id = user._id
+                //each user creates three tuits
+                await Promise.all(tuitContents.map(content =>
+                    createTuit(user._id, {tuit: content})))
+            }
+
+        }
+    );
+
+    // clean up after test runs
+    afterAll(async () => {
+            await Promise.all(tuitContents.map(content =>
+                deleteTuitByContent(content)
+            ))
+            await deleteUsersByUsername(nasa.username)
+        }
+    );
+
+    test('can retrieve all tuits from REST API', async () => {
+        // retrieve all the tuits
+        const tuits = await findAllTuits();
+
+        // let's check each tuit we inserted
+        const tuitsWeInserted = tuits.filter(
+            // indexOf() method returns the first index (position) of a specified value.
+            // returns -1 if value not found
+            newTuit => tuitContents.indexOf(newTuit.tuit) >= 0);
+
+        // exactly same tuits number as we inserted
+        expect(tuitsWeInserted.length).toEqual(tuitContents.length);
+
+        //compare the actual tuits in database with the ones we sent
+        tuitsWeInserted.forEach(tuit => {
+            // The find() method retuns undefined if no elements are found.
+            const tuitContent = tuitContents.find(tuitContent => tuitContent === tuit.tuit);
+            expect(tuit.tuit).toEqual(tuitContent);
+            expect(tuit.postedBy).toEqual(nasa._id);
+            //expect(tuit.password).toEqual(`${username}123`);
+        });
+    });
+
 });

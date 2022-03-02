@@ -82,7 +82,7 @@ describe('findUserById', () => {
         return deleteUsersByUsername(adam.username)
     });
 
-    // clean up after ourselves
+    // clean up after test runs
     afterAll(() => {
         // remove any data we inserted
         return deleteUsersByUsername(adam.username);
@@ -114,7 +114,6 @@ describe('findAllUsers', () => {
     const usernames = [
         "larry", "curley", "moe"
     ];
-    //usernames.map(username => console.log(username))
 
     // setup data before test
     beforeAll(() =>
@@ -130,7 +129,7 @@ describe('findAllUsers', () => {
         )
     );
 
-    // clean up after ourselves
+    // clean up after test runs
     afterAll(() =>
         //.map() is not promise-aware
         // use Promise.all to wait until all promises(delete user operations) are done
