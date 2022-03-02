@@ -14,6 +14,7 @@ describe('createUser', () => {
 
     // setup test before running test
     beforeAll(() => {
+        // use return, Jest will wait for this promise to resolve before running tests.
         // remove any/all users to make sure we create it in the test
         return deleteUsersByUsername(ripley.username);
     })
@@ -46,6 +47,7 @@ describe('deleteUsersByUsername', () => {
 
     // setup the tests before verification
     beforeAll(() => {
+        // use return, Jest will wait for this promise to resolve before running tests.
         // insert the sample user we then try to remove
         return createUser(sowell);
     });
@@ -75,6 +77,7 @@ describe('findUserById', () => {
 
     // setup before running test
     beforeAll(() => {
+        // use return, Jest will wait for this promise to resolve before running tests.
         // clean up before the test making sure the user doesn't already exist
         return deleteUsersByUsername(adam.username)
     });
@@ -115,7 +118,8 @@ describe('findAllUsers', () => {
 
     // setup data before test
     beforeAll(() =>
-        // use Promise.all to insert several known users, then execute the test
+        //.map() is not promise-aware
+        // use Promise.all to to wait until all promises(insert users) are done
         Promise.all(usernames.map(username =>
                 createUser({
                     username: username,
@@ -128,11 +132,11 @@ describe('findAllUsers', () => {
 
     // clean up after ourselves
     afterAll(() =>
-        // use Promise.all to delete the users we inserted
+        //.map() is not promise-aware
+        // use Promise.all to wait until all promises(delete user operations) are done
         Promise.all(usernames.map(username =>
-                deleteUsersByUsername(username)
-            )
-        )
+            deleteUsersByUsername(username)
+        ))
     );
 
     test('can retrieve all users from REST API', async () => {
