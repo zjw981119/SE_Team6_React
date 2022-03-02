@@ -2,7 +2,7 @@ import {
     createTuit, deleteTuit,
     findTuitById, findAllTuits, deleteTuitByContent
 } from "../services/tuits-service";
-import {createUser, deleteUsersByUsername} from "../services/users-service";
+import {createUser, deleteUsersByUsername, findUserById} from "../services/users-service";
 
 describe('can create tuit with REST API', () => {
     // sample user to insert
@@ -22,6 +22,7 @@ describe('can create tuit with REST API', () => {
         // remove any/all tuits to make sure we create it in the test
         return deleteTuitByContent(nasaTuit.tuit);
     })
+
 
     // clean up after test runs
     afterAll(() => {
@@ -57,6 +58,7 @@ describe('can delete tuit wtih REST API', () => {
         tuit: 'our @NASAPersevere Mars rover landed and our Ingenuity....',
     };
 
+
     // clean up after test runs
     afterAll(async () => {
             // remove any data we created
@@ -67,6 +69,7 @@ describe('can delete tuit wtih REST API', () => {
     )
 
     test('can delete users from REST API by username', async () => {
+        // create new tuit
         const newUser = await createUser(nasa);
         const newTuit = await createTuit(newUser._id, nasaTuit)
         // delete a tuit by its id.
@@ -78,7 +81,42 @@ describe('can delete tuit wtih REST API', () => {
 });
 
 describe('can retrieve a tuit by their primary key with REST API', () => {
-    // TODO: implement this
+    const nasa = {
+        username: 'nasa',
+        password: 'nasa426',
+        email: 'nasa@aliens.com'
+    };
+    // sample tuit to delete
+    const nasaTuit = {
+        tuit: 'our @NASAPersevere Mars rover landed and our Ingenuity....',
+    };
+
+    // clean up after test runs
+    afterAll(async () => {
+            // remove any data we created
+            // use await to wait until all promises finished
+            await deleteTuitByContent(nasaTuit.tuit)
+            await deleteUsersByUsername(nasa.username)
+        }
+    )
+
+    test('can retrieve a tuit from REST API by primary key', async () => {
+        // create new tuit
+        const newUser = await createUser(nasa);
+        const newTuit = await createTuit(newUser._id, nasaTuit)
+
+        // verify new tuit matches the parameter tuit && new user's id(primary key)
+        expect(newTuit.tuit).toEqual(nasaTuit.tuit);
+        expect(newTuit.postedBy).toEqual(newUser._id);
+
+        // retrieve the user from the database by its primary key
+        const existingTuit = await findTuitById(newTuit._id);
+
+        // verify retrieved tuit matches parameter tuit && new user's id
+        expect(existingTuit.tuit).toEqual(nasaTuit.tuit);
+        // existingTuit is a tuit object with a populated postedBy(user) object
+        expect(existingTuit.postedBy._id).toEqual(newUser._id);
+    });
 });
 
 describe('can retrieve all tuits with REST API', () => {
