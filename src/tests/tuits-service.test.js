@@ -176,7 +176,7 @@ describe('can retrieve all tuits with REST API', () => {
             // The find() method retuns undefined if no elements are found.
             const tuitContent = tuitContents.find(tuitContent => tuitContent === tuit.tuit);
             expect(tuit.tuit).toEqual(tuitContent);
-            expect(tuit.postedBy).toEqual(nasa._id);
+            expect(tuit.postedBy._id).toEqual(nasa._id);
             //expect(tuit.password).toEqual(`${username}123`);
         });
     });

@@ -2,6 +2,8 @@ import axios from "axios";
 
 // const TUITS_API = "http://localhost:4000/tuits";
 // const USERS_API = "http://localhost:4000/users";
+// const USERS_API = "https://cs5500-01-sp22.herokuapp.com/api/users";
+// const TUITS_API = "https://cs5500-01-sp22.herokuapp.com/api/tuits";
 const TUITS_API = "https://tuiter-a3-jw.herokuapp.com/tuits";
 const USERS_API = "https://tuiter-a3-jw.herokuapp.com/users";
 
