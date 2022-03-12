@@ -120,7 +120,6 @@ describe('can retrieve a tuit by their primary key with REST API', () => {
 });
 
 describe('can retrieve all tuits with REST API', () => {
-    // TODO: implement this
     // sample user we'll insert to create tuits
     const nasa = {
         username: 'nasa',
@@ -166,6 +165,7 @@ describe('can retrieve all tuits with REST API', () => {
         const tuitsWeInserted = tuits.filter(
             // indexOf() method returns the first index (position) of a specified value.
             // returns -1 if value not found
+            // can be used in String or array
             newTuit => tuitContents.indexOf(newTuit.tuit) >= 0);
 
         // exactly same tuits number as we inserted
