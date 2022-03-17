@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const BASE_URL = "https://tuiter-a3-jw.herokuapp.com";
+//const BASE_URL = "https://tuiter-a3-jw.herokuapp.com";
 //const BASE_URL = "https://cs5500-01-sp22.herokuapp.com/api";
-//const BASE_URL = "http://localhost:4000";
+const BASE_URL = "http://localhost:4000";
 
 const LOGIN_API = `${BASE_URL}/login`;
 const USERS_API = `${BASE_URL}/users`;
