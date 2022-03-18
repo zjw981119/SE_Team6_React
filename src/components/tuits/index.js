@@ -1,8 +1,13 @@
 import React from "react";
 import './tuits.css';
 import Tuit from "./tuit";
+import * as service from "../../services/tuits-service";
+const Tuits = ({tuits = [], refreshTuits}) => {
 
-function Tuits({tuits = [], deleteTuit}) {
+    const deleteTuit = (tid) =>
+        service.deleteTuit(tid)
+            .then(refreshTuits);
+
     return (
     <div>
       <ul className="ttr-tuits list-group">

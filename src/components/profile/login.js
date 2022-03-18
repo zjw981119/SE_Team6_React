@@ -6,7 +6,6 @@ import * as service from "../../services/security-service";
 export const Login = () => {
     const [loginUser, setLoginUser] = useState({});
     const navigate = useNavigate()
-
     // login: if success --> navigate to mytuits screen
     const login = () =>
         service.login(loginUser)
