@@ -1,9 +1,6 @@
 import React from "react";
 
-const TuitStats = ({
-                       tuit, likeTuit = () => {
-    }
-                   }) => {
+const TuitStats = ({tuit, likeTuit = () => {}}) => {
     return (
         <div className="row mt-2">
             <div className="col">
