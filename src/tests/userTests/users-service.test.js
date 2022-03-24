@@ -2,7 +2,7 @@ import {
     createUser,
     deleteUsersByUsername, findAllUsers,
     findUserById
-} from "../services/users-service";
+} from "../../services/users-service";
 
 describe('createUser', () => {
     // sample user to insert
@@ -27,12 +27,17 @@ describe('createUser', () => {
 
     test('can insert new users with REST API', async () => {
         // insert new user in the database
-        const newUser = await createUser(ripley);
+        try{
+            const newUser = await createUser(ripley);
 
-        // verify inserted user's properties match parameter user
-        expect(newUser.username).toEqual(ripley.username);
-        expect(newUser.password).toEqual(ripley.password);
-        expect(newUser.email).toEqual(ripley.email);
+            // verify inserted user's properties match parameter user
+            expect(newUser.username).toEqual(ripley.username);
+            expect(newUser.password).toEqual(ripley.password);
+            expect(newUser.email).toEqual(ripley.email);
+        } catch (e){
+            console.log(e)
+        }
+
     });
 });
 

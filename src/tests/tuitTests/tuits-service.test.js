@@ -1,8 +1,8 @@
 import {
     createTuit, deleteTuit,
     findTuitById, findAllTuits, deleteTuitByContent
-} from "../services/tuits-service";
-import {createUser, deleteUsersByUsername, findAllUsers, findUserById} from "../services/users-service";
+} from "../../services/tuits-service";
+import {createUser, deleteUsersByUsername, findAllUsers, findUserById} from "../../services/users-service";
 
 describe('can create tuit with REST API', () => {
     // sample user to insert
@@ -38,6 +38,7 @@ describe('can create tuit with REST API', () => {
     test('can insert new tuit with REST API', async () => {
         // insert new user in the database
         const newUser = await createUser(nasa);
+        console.log(newUser)
         // insert new tuit in the database
         const newTuit = await createTuit(newUser._id, nasaTuit)
 
