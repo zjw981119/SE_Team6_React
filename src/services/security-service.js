@@ -19,8 +19,8 @@ export const login = (user) =>
     api.post(`${SECURITY_API}/login`, user)
         .then(response => response.data);
 
-export const logout = (user) =>
-    api.post(`${SECURITY_API}/logout`, user)
+export const logout = () =>
+    api.post(`${SECURITY_API}/logout`)
         .then(response => response.data);
 
 export const profile = () =>

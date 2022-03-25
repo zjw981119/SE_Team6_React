@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import {
     createTuit, deleteTuit,
     findTuitById, findAllTuits, deleteTuitByContent
