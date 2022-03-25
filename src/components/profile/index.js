@@ -9,6 +9,7 @@ import * as service from "../../services/security-service"
 
 const Profile = () => {
     const navigate = useNavigate();
+    // const location = useLocation();
     const [profile, setProfile] = useState({});
 
     // retrieve the currently logged in user
@@ -90,7 +91,7 @@ const Profile = () => {
                                 Media</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/profile/likes"
+                            <Link to="/profile/mylikes"
                                   className="nav-link">
                                 Likes</Link>
                         </li>
@@ -102,7 +103,7 @@ const Profile = () => {
                 <Route path="/mytuits" element={<MyTuits/>}/>
                 <Route path="/tuits-and-replies" element={<TuitsAndReplies/>}/>
                 <Route path="/media" element={<Media/>}/>
-                <Route path="/likes" element={<MyLikes/>}/>
+                <Route path="/mylikes" element={<MyLikes/>}/>
             </Routes>
 
         </div>
