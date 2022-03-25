@@ -3,8 +3,10 @@ import MyTuits from "./my-tuits";
 import TuitsAndReplies from "./tuits-and-replies";
 import Media from "./media";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 import {HashRouter, Link, Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import * as service from "../../services/security-service"
+
 
 
 const Profile = () => {
@@ -95,6 +97,12 @@ const Profile = () => {
                                   className="nav-link">
                                 Likes</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to="/profile/mydislikes"
+                                  className="nav-link">
+                                Dislikes</Link>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -104,6 +112,7 @@ const Profile = () => {
                 <Route path="/tuits-and-replies" element={<TuitsAndReplies/>}/>
                 <Route path="/media" element={<Media/>}/>
                 <Route path="/mylikes" element={<MyLikes/>}/>
+                <Route path="/mydislikes" element={<MyDislikes/>}/>
             </Routes>
 
         </div>
