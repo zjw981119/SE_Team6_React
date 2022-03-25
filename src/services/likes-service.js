@@ -1,3 +1,6 @@
+/**
+ * @file Axios Request service API for likes && tuits resource
+ */
 import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -7,6 +10,11 @@ const api = axios.create({
     withCredentials: true
 });
 
+/**
+ * Update tuit stats based on user's click event(toggles like button)
+ * @param {string} uid Represents user that is toggling like button
+ * @param {string} tid Represents the tuit being liked by user
+ */
 export const userLikesTuit = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/likes/${tid}`)
         .then(response => response.data);

@@ -2,10 +2,10 @@
 {Tuits} imports the export 'Tuits' from the file '../components/tuits/index'
 while Tuits imports the default export from '../components/tuits/index'.
  */
-import Tuits from "../components/tuits/index";
+import Tuits from "../../components/tuits";
 import {screen, render} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
-import {findAllTuits} from "../services/tuits-service";
+import {findAllTuits} from "../../services/tuits-service";
 import axios from "axios";
 
 //jest.mock('axios');

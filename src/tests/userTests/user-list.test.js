@@ -1,7 +1,10 @@
-import {UserList} from "../components/profile/user-list";
+/**
+ * @jest-environment node
+ */
+import {UserList} from "../../components/profile/user-list";
 import {screen, render} from "@testing-library/react";  // for rendering component
 import {HashRouter} from "react-router-dom";  // for navigation
-import {findAllUsers} from "../services/users-service";
+import {findAllUsers} from "../../services/users-service";
 import axios from "axios";
 
 //jest.mock('axios');

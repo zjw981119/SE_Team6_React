@@ -3,12 +3,12 @@ import {
   createUser,
   deleteUsersByUsername, findAllUsers,
   findUserById
-} from "../services/users-service";
-import services from "./services";
-import {Login} from "../components/profile/login";
+} from "../../services/users-service";
+import services from "../services";
+import {Login} from "../../components/profile/login";
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
-import Tuiter from "../components/tuiter";
+import Tuiter from "../../components/tuiter";
 import React from "react";
 
 jest.mock("axios");
