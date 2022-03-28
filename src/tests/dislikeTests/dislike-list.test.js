@@ -1,4 +1,3 @@
-// sample tuits
 import {render, screen} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import Tuits from "../../components/tuits";
@@ -7,6 +6,7 @@ import {findAllTuits} from "../../services/tuits-service";
 import {findAllTuitsDisLikedByUser} from "../../services/dislikes-service";
 import {login} from "../../services/security-service";
 
+// sample tuits
 const MOCKED_TUITS_I_DISLIKED = [
     {
         _id: "123",
