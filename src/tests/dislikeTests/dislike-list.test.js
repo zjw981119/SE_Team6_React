@@ -1,4 +1,3 @@
-// sample tuits
 import {render, screen} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import Tuits from "../../components/tuits";
@@ -7,6 +6,7 @@ import {findAllTuits} from "../../services/tuits-service";
 import {findAllTuitsDisLikedByUser} from "../../services/dislikes-service";
 import {login} from "../../services/security-service";
 
+// sample tuits
 const MOCKED_TUITS_I_DISLIKED = [
     {
         _id: "123",
@@ -60,11 +60,13 @@ test('dislike list renders static tuit array', () => {
     expect(linkElement).toBeInTheDocument();
 });
 
+
 // test rendering from REST
 test('dislike list renders async', async () => {
+    jest.setTimeout(10000)
     //user login
-    await login(LOGIN_USER)
-    const tuits = await findAllTuitsDisLikedByUser("me");
+    const loginUser = await login(LOGIN_USER)
+    const tuits = await findAllTuitsDisLikedByUser(loginUser._id);
     // render a dislike tuit array
     render(
         <HashRouter>
@@ -76,6 +78,7 @@ test('dislike list renders async', async () => {
 })
 
 test('dislike list renders mocked', async () => {
+    jest.setTimeout(10000)
     //only mock axios.get() method
     const mock = jest.spyOn(axios, 'get');
     // simulate response from REST with static response
