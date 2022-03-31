@@ -2,7 +2,6 @@ import {render, screen} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
 import Tuits from "../../components/tuits";
 import axios from "axios";
-import {findAllTuits} from "../../services/tuits-service";
 import {findAllTuitsDisLikedByUser} from "../../services/dislikes-service";
 import {login} from "../../services/security-service";
 
@@ -81,7 +80,7 @@ test('dislike list renders mocked', async () => {
     // simulate response from REST with static response
     mock.mockImplementation(() =>
         Promise.resolve({data: {tuits: MOCKED_TUITS_I_DISLIKED}}));
-    const response = await findAllTuits();
+    const response = await findAllTuitsDisLikedByUser("me");
     const tuits = response.tuits;
 
     // render a dislike tuit array
