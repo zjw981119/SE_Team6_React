@@ -59,13 +59,11 @@ test('dislike list renders static tuit array', () => {
     expect(linkElement).toBeInTheDocument();
 });
 
-
 // test rendering from REST
 test('dislike list renders async', async () => {
-    jest.setTimeout(10000)
     //user login
-    const loginUser = await login(LOGIN_USER)
-    const tuits = await findAllTuitsDisLikedByUser(loginUser._id);
+    await login(LOGIN_USER)
+    const tuits = await findAllTuitsDisLikedByUser("me");
     // render a dislike tuit array
     render(
         <HashRouter>
@@ -77,7 +75,6 @@ test('dislike list renders async', async () => {
 })
 
 test('dislike list renders mocked', async () => {
-    jest.setTimeout(10000)
     //only mock axios.get() method
     const mock = jest.spyOn(axios, 'get');
     // simulate response from REST with static response
