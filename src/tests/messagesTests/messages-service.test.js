@@ -2,7 +2,7 @@
  * @jest-environment node
  */
 import {createUser, deleteUsersByUsername, findAllUsers} from "../../services/users-service";
-import {deleteMsgByContent, findAllContacts, sendMessage} from "../../services/messages-service";
+import {deleteMsgByContent, findAllContacts, findAllMessages, sendMessage} from "../../services/messages-service";
 
 describe('can retrieve all contacts with REST API', () => {
     // sample user to insert
@@ -117,3 +117,74 @@ describe('can create message with REST API', () => {
     });
 });
 
+describe('can retrieve all messages between two users with REST API', () => {
+    // sample user to insert
+    const users = [
+        {
+            username: 'sender',
+            password: 'sender',
+            email: 'sender@aliens.com'
+        },
+        {
+            username: 'receiver',
+            password: 'receiver',
+            email: 'receiver@aliens.com'
+        }
+    ];
+    // sample message to send
+    const messages = [
+        {
+            message: 'sender message'
+        },
+        {
+            message: 'receiver message'
+        }
+    ]
+
+    // setup test before running test
+    beforeAll(() => {
+        // use return, Jest will wait for this promise to resolve before running tests.
+        // remove any/all messages to make sure we create it in the test
+        const promise1 = deleteMsgByContent(messages[0].message)
+        const promise2 = deleteMsgByContent(messages[1].message)
+        return Promise.all([promise1, promise2])
+    })
+
+
+    // clean up after test runs
+    afterAll(() => {
+            // remove any data we created
+            const promise1 = deleteMsgByContent(messages[0].message)
+            const promise2 = deleteMsgByContent(messages[1].message)
+            const promise3 = deleteUsersByUsername(users[0].username)
+            const promise4 = deleteUsersByUsername(users[1].username)
+            return Promise.all([promise1, promise2, promise3, promise4])
+        }
+    )
+
+    test('can retrieve all msgs with REST API', async () => {
+        // insert new user in the database
+        const sender = await createUser(users[0]);
+        const receiver = await createUser(users[1]);
+
+        // sender send new msg
+        const newMsg1 = await sendMessage(sender._id, receiver._id, messages[0])
+        // receiver send new msg
+        const newMsg2 = await sendMessage(receiver._id, sender._id, messages[1])
+
+        // sender retrieve all messages
+        const allMsgs = await findAllMessages(
+            {
+                sentFrom: sender._id,
+                sentTo: receiver._id,
+            }
+        )
+        expect(allMsgs.length).toEqual(messages.length);
+        // verify msg sent from sender
+        expect(allMsgs[0].message).toEqual(newMsg1.message);
+        expect(allMsgs[0].fromSelf).toEqual(true);
+        // verify msg sent from receiver
+        expect(allMsgs[1].message).toEqual(newMsg2.message);
+        expect(allMsgs[1].fromSelf).toEqual(false);
+    });
+});
