@@ -14,8 +14,9 @@ export const sendMessage = (sender, receiver, msg) =>
         .then(response => response.data);
 
 // retrieve current user's contacts, users should be an object {sentFrom: me, sentTo: uid}
+// axios.get doesn't support body
 export const findAllMessages = (users) =>
-    api.get(MESSAGES_API, users)
+    api.post(MESSAGES_API, users)
         .then(response => response.data);
 
 // retrieve current user's contacts, uid should be 'my'
