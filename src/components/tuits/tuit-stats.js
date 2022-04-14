@@ -69,7 +69,7 @@ const TuitStats =  ({tuit, likeTuit, dislikeTuit, bookmarkTuit}) => {
                       !tuit.isBookmarked &&
                       <i class="fa-regular fa-bookmark"></i>
                   }
-                  <span className="ttr-stats-bookmarks">{tuit.stats && tuit.stats.bookmarks}</span>
+                  <span className="ttr-stats-likes">{tuit.stats && tuit.stats.bookmarks}</span>
               </span>
             </div>
 
