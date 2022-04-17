@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { sendMessageRoute, recieveMessageRoute } from "../../utils/APIRoutes";
 import * as service from "../../services/security-service";
+import {findAllMessages} from "../../services/messages-service";
 
 export default function ChatContainer({ currentChat, socket }) {
     const [messages, setMessages] = useState([]);
@@ -15,7 +16,7 @@ export default function ChatContainer({ currentChat, socket }) {
     useEffect(async () => {
         const data = await service.profile();
         //setProfile(user);
-        const response = await axios.post(recieveMessageRoute, {
+        const response = await findAllMessages({
             from: data._id,
             to: currentChat._id,
         });
