@@ -8,6 +8,7 @@ import './bookmarks.css';
 import Select from 'react-select';
 import {HashRouter, Link, Route, Routes, useNavigate, useLocation} from "react-router-dom";
 import * as service from "../../services/security-service"
+import * as bookmarkService from "../../services/bookmarks-service.js"
 
 
 function Bookmarks () {
@@ -26,6 +27,17 @@ function Bookmarks () {
             navigate('/login');
         }
     }, []);
+
+    const [bookmarkedTuits, setBookmarkedTuits] = useState([]);
+        const findTuitsIBookmarked = () =>{
+        console.log("find tuits bookmark");
+            bookmarkService.findAllTuitsBookmarkedByUser("me")
+                .then((tuits) => setBookmarkedTuits(tuits));
+    //        service.findAllTuits()
+    //            .then((tuits) => setBookmarkedTuits(tuits));
+
+                }
+        useEffect(findTuitsIBookmarked, []);
 
 
   const data = [
@@ -80,7 +92,8 @@ function Bookmarks () {
         <div><b>Value: </b> {selectedOption.value}</div>
       </div>}
 </div>
-    <MyBookmarks profile={profile}/>
+        <Tuits tuits={bookmarkedTuits}
+        refreshTuits={findTuitsIBookmarked}/>
 
     </div>
   );
