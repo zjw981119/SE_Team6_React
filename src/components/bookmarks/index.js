@@ -14,7 +14,8 @@ function Bookmarks() {
     const navigate = useNavigate();
     // const location = useLocation();
     const [profile, setProfile] = useState({});
-    const [selectedOption, setSelectedOption] = useState('default');
+    // selectedOption is an object
+    const [selectedOption, setSelectedOption] = useState({value: 'default', label: 'View All'});
     const [bookmarkedTuits, setBookmarkedTuits] = useState([]);
     const data = [
         { value: 'default', label: 'View All' },
@@ -35,12 +36,12 @@ function Bookmarks() {
 
     const findTuitsIBookmarked = () => {
         // find all bookmarked tuits
-        if(selectedOption === 'default'){
+        if(selectedOption.value === 'default'){
             bookmarkService.findAllTuitsBookmarkedByUser("me")
                 .then((tuits) => setBookmarkedTuits(tuits));
         } else {
-            // retrieve all tuits bookmarked by login user with tag(selectedOption)
-            bookmarkService.findAllBookmarkedTuitsByTag("me", selectedOption)
+            // retrieve all tuits bookmarked by login user with tag(selectedOption.value)
+            bookmarkService.findAllBookmarkedTuitsByTag("me", selectedOption.value)
                 .then(tuits => setBookmarkedTuits(tuits))
         }
         console.log(bookmarkedTuits)
