@@ -1,15 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 import styled from "styled-components";
-import { allUsersRoute, host } from "../../utils/APIRoutes";
+import { host } from "../../utils/APIRoutes";
 import ChatContainer from "./ChatContainer";
 import Welcome from "./Welcome";
-import {Login} from "../profile/login";
 import * as service from "../../services/security-service";
 import Contacts from "./Contacts";
-import * as usersService from "../../services/users-service";
+import {findAllContacts} from "../../services/messages-service";
 
 export default function Chat() {
   const navigate = useNavigate();
@@ -53,12 +51,15 @@ export default function Chat() {
       }
     }
   }, [currentUser]);*/
-  const findAllUsers = () =>
-      usersService.findAllUsers()
+
+  // find all contacts excluding the login user
+  const findContacts = () =>
+      findAllContacts("my")
           .then(users => {
             setContacts(users)
           })
-  useEffect(findAllUsers, []);
+  useEffect(findContacts, []);
+
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
   };
