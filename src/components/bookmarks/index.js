@@ -1,102 +1,79 @@
-
 import React, {useEffect, useState} from "react";
 
 import Tuits from "../tuits";
-import MyBookmarks from "./my-bookmarks";
 import './bookmarks.css';
 
 import Select from 'react-select';
-import {HashRouter, Link, Route, Routes, useNavigate, useLocation} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import * as service from "../../services/security-service"
 import * as bookmarkService from "../../services/bookmarks-service.js"
 
 
-function Bookmarks () {
+function Bookmarks() {
 
     const navigate = useNavigate();
     // const location = useLocation();
     const [profile, setProfile] = useState({});
+    const [selectedOption, setSelectedOption] = useState('default');
+    const [bookmarkedTuits, setBookmarkedTuits] = useState([]);
+    const data = [
+        { value: 'default', label: 'View All' },
+        { value: 'action', label: 'action' },
+        { value: 'sports', label: 'sports' },
+        { value: 'travel', label: 'travel' },
+    ];
 
     // retrieve the currently logged in user
     useEffect(async () => {
         try {
-//            const user = await service.profile();
-//            console.log("user", user)
-//            setProfile(user);
+           const user = await service.profile();
+           setProfile(user);
         } catch (e) {
             navigate('/login');
         }
     }, []);
 
-    const [bookmarkedTuits, setBookmarkedTuits] = useState([]);
-        const findTuitsIBookmarked = () =>{
-        console.log("find tuits bookmark");
+    const findTuitsIBookmarked = () => {
+        // find all bookmarked tuits
+        if(selectedOption === 'default'){
             bookmarkService.findAllTuitsBookmarkedByUser("me")
                 .then((tuits) => setBookmarkedTuits(tuits));
-    //        service.findAllTuits()
-    //            .then((tuits) => setBookmarkedTuits(tuits));
-
-                }
-        useEffect(findTuitsIBookmarked, []);
-
-
-  const data = [
-    {
-      value: '',
-      label: "View All"
-    },
-
-    {
-      value: 1,
-      label: "action"
-    },
-    {
-      value: 2,
-      label: "sports"
-    },
-    {
-      value: 3,
-      label: "travel"
+        } else {
+            // retrieve all tuits bookmarked by login user with tag(selectedOption)
+            bookmarkService.findAllBookmarkedTuitsByTag("me", selectedOption)
+                .then(tuits => setBookmarkedTuits(tuits))
+        }
+        console.log(bookmarkedTuits)
     }
-  ];
+    useEffect(findTuitsIBookmarked, [selectedOption]);
 
-  const [selectedOption, setSelectedOption] = useState(null);
+    return (
+        <div className="Bookmarks">
 
-  // handle onChange event of the dropdown
-  const handleChange = e => {
-    e.label!=="View All"?setSelectedOption(e):setSelectedOption(null);
-    console.log(e)
-  }
+            <div>
+                <h1> My Bookmarks</h1>
+                <Tuits/>
+            </div>
 
-  return (
+            <div style={{marginBottom: '2rem'}}>
+                <Select
+                    placeholder="Select Option"
+                    defaultValue={selectedOption} // set selected value
+                    options={data} // set list of the data
+                    onChange={setSelectedOption} // update selected value
+                />
 
-    <div className="Bookmarks">
+                {selectedOption && <div style={{marginTop: 20, lineHeight: '25px'}}>
+                    <b>Selected Option</b><br/>
+                    <div style={{marginTop: 10}}><b>{selectedOption.label}</b></div>
+                    <div><b>Value: </b> {selectedOption.value}</div>
+                </div>}
+            </div>
+            <Tuits tuits={bookmarkedTuits}
+                   refreshTuits={findTuitsIBookmarked}/>
 
-      <div>
-          <h1> My Bookmarks</h1>
-        <Tuits/>
-      </div>
-
-<div style={{marginBottom:'2rem'}}>
-      <Select
-        placeholder="Select Option"
-        value={selectedOption} // set selected value
-        options={data} // set list of the data
-        onChange={handleChange} // assign onChange function
-
-      />
-
-      {selectedOption && <div style={{ marginTop: 20, lineHeight: '25px' }}>
-        <b>Selected Option</b><br />
-        <div style={{ marginTop: 10 }}> <b>{selectedOption.label}</b> </div>
-        <div><b>Value: </b> {selectedOption.value}</div>
-      </div>}
-</div>
-        <Tuits tuits={bookmarkedTuits}
-        refreshTuits={findTuitsIBookmarked}/>
-
-    </div>
-  );
+        </div>
+    );
 }
 
 export default Bookmarks;

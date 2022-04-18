@@ -26,3 +26,12 @@ export const userBookmarksTuit = (uid, tid) =>
 export const findAllTuitsBookmarkedByUser = (uid) =>
     api.get(`${USERS_API}/${uid}/bookmarks`)
         .then(response => response.data);
+
+/**
+ * Retrieve all tuits bookmarked by user with specific tag.
+ * @param {string} uid Represents the login user
+ * @param {string} tag Represents the tuit tag
+ */
+export const findAllBookmarkedTuitsByTag = (uid, tag) =>
+    api.get(`${USERS_API}/${uid}/bookmarks/${tag}`)
+        .then(response => response.data);
