@@ -1,7 +1,25 @@
 .ttr-tuits .ttr-tuit-avatar-logo {
-    width: 48px;
+    width:60px;
+    margin: 10px;
+    background-color: rgba(226, 226, 226, 0.384);
+    border: 1px solid rgba(0, 0, 0, 0.123);
 }
-
+.ttr-tuits li{
+  
+    background-color: rgba(255, 255, 255, 0.61);
+    font-family: 'Courier New';
+    font-size: 16px !important;
+    color: rgb(128, 128, 128) !important;
+}
+.fs-5{
+    background-color: rgba(238, 238, 238, 0.568);
+    font-family: 'Courier New';
+    font-size: 16px !important;
+    color: darkblue;
+    padding: 2px;
+    font-style: oblique;
+    width: fit-content;
+}
 .ttr-tuits .ttr-tuit-image-overlay {
     left: 10px;
 }
@@ -10,4 +28,10 @@
     display: block;
     content: "";
     padding-top: 56.25%;
+}
+
+.icons{
+    font-size: 0.85rem;
+    color: rgb(0, 0, 0) !important;
+    
 }

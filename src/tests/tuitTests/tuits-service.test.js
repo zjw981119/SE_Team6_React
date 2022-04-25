@@ -41,7 +41,7 @@ describe('can create tuit with REST API', () => {
     test('can insert new tuit with REST API', async () => {
         // insert new user in the database
         const newUser = await createUser(nasa);
-        console.log(newUser)
+        // console.log(newUser)
         // insert new tuit in the database
         const newTuit = await createTuit(newUser._id, nasaTuit)
 
