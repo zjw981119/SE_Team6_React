@@ -9,10 +9,7 @@ export default function Welcome() {
     }, []);
   return (
     <Container>
-      <h1>
-        Welcome, <span>{userName.username}!</span>
-      </h1>
-      <h3>Please select a chat to Start messaging.</h3>
+      <h1 style={{color: "black", fontSize: "20px"}}>Please select a chat on the left to Start messaging.</h1>
     </Container>
   );
 }

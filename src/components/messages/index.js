@@ -80,18 +80,18 @@ export default function Chat() {
 }
 
 const Container = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 600px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #131324;
+  border-color: black;
   .container {
-    height: 85vh;
-    width: 85vw;
-    background-color: #00000076;
+    height: 600px;
+    width: 600px;
+    background-color: white;
     display: grid;
     grid-template-columns: 25% 75%;
     @media screen and (min-width: 720px) and (max-width: 1080px) {
@@ -99,3 +99,5 @@ const Container = styled.div`
     }
   }
 `;
+
+
