@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const TuitStats =  ({tuit, likeTuit, dislikeTuit}) => {
+const TuitStats =  ({tuit, likeTuit, dislikeTuit, bookmarkTuit}) => {
 
     console.log(typeof tuit.isDisliked)
     console.log(tuit._id, ": ", tuit.isLiked)
@@ -56,10 +56,28 @@ const TuitStats =  ({tuit, likeTuit, dislikeTuit}) => {
               </span>
             </div>
 
+            <div className="col">
+              <span className="ttr-bookmark-tuit-click" onClick={() => bookmarkTuit(tuit)}>
+                  {
+                      // if user bookmarks this tuit, then render shaded bookmark icon
+                      tuit.isBookmarked &&
+                      <i className="fa-solid fa-bookmark" style={{color: 'red'}}/>
+                      //<i className="far fa-thumbs-up me-1" style={{color: 'red'}}></i>
+                  }
+                  {
+                      // user doesn't bookmark this tuit
+                      !tuit.isBookmarked &&
+                      <i class="fa-regular fa-bookmark"></i>
+                  }
+                  <span className="ttr-stats-likes">{tuit.stats && tuit.stats.bookmarks}</span>
+              </span>
+            </div>
+
 
             <div className="col">
                 <i className="far fa-inbox-out"></i>
             </div>
+
         </div>
     );
 }
