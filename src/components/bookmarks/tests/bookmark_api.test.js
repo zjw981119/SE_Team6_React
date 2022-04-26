@@ -21,7 +21,7 @@ test("bookmark component renders", () => {
         </HashRouter>
       </>
     );
-    // checks whether action tag of the tweet retrived from server is present or not
+    // checks whether action tag of the tuit retrieved from server is present or not
     const test = screen.getByText(/action/i);
     expect(test).toBeInTheDocument();
   });
