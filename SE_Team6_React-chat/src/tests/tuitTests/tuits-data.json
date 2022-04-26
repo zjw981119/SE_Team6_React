@@ -1,0 +1,14 @@
+[
+  {
+    "_id":  "123",
+    "tuit": "Alice's tuit"
+  },
+  {
+    "_id":  "234",
+    "tuit": "Bob's tuit"
+  },
+  {
+    "_id":  "345",
+    "tuit": "Charlie's tuit"
+  }
+]
