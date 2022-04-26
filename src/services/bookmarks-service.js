@@ -25,6 +25,7 @@ export const userBookmarksTuit = (uid, tid) =>
  * @param {string} uid Represents the login user
  */
 export const findAllTuitsBookmarkedByUser = (uid) =>
+
   api.get(`${USERS_API}/${uid}/bookmarks`).then((response) => response.data);
 
 /**
@@ -34,7 +35,9 @@ export const findAllTuitsBookmarkedByUser = (uid) =>
  */
 export const findAllBookmarkedTuitsByTag = (uid, tag) =>
     api.get(`${USERS_API}/${uid}/bookmarks/${tag}`)
+
         .then(response => response.data);
 
 export const findAllTags = (uid) =>
   api.get(`${USERS_API}/${uid}/tags/`).then((response) => response.data);
+
