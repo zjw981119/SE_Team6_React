@@ -18,7 +18,9 @@ export const Login = () => {
 
   return (
       <div>
-      <div className="form-outline mb-4">
+          <h1>Login</h1>
+
+          <div className="form-outline mb-4">
           <input onChange={(e) =>
               setLoginUser({...loginUser,
                   username: e.target.value})} type="email" id="form2Example1" className="form-control"/>
