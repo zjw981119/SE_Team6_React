@@ -8,7 +8,7 @@ const api = axios.create({
     withCredentials: true
 });
 
-// send message by user, sender should be 'me'
+// send message by user, sender should be 'me', msg should be an object {message: ....}
 export const sendMessage = (sender, receiver, msg) =>
     api.post(`${USERS_API}/${sender}/messages/${receiver}`, msg)
         .then(response => response.data);
