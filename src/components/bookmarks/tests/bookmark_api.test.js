@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import Bookmarks from "../index";
 import { screen, render } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
