@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import * as usersService from "../../services/users-service";
-import * as service from "../../services/security-service";
 //import Logo from "../assets/logo.svg";
 
 export default function Contacts({ contacts, changeChat }) {
   const [currentUserName, setCurrentUserName] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [currentSelected, setCurrentSelected] = useState(undefined);
-  const [userName, setProfile] = useState("");
-  useEffect(async () => {
-    const user = await service.profile();
-    setProfile(user);
-  }, []);
   /*useEffect(async () => {
     const data = await JSON.parse(
       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
@@ -53,13 +47,15 @@ export default function Contacts({ contacts, changeChat }) {
               );
             })}
           </div>
-          <div className="current-user" style={{backgroundColor: "grey"}}>
+          <div className="current-user">
             <div className="avatar">
-              <img src={`../images/${userName.username}.jpg`}
-                   className="ttr-tuit-avatar-logo rounded-circle"/>
+              <img
+                src={`data:image/svg+xml;base64,${currentUserImage}`}
+                alt="avatar"
+              />
             </div>
             <div className="username">
-              <h2 style={{color: "black"}}>{userName.username}</h2>
+              <h2>{currentUserName}</h2>
             </div>
           </div>
         </Container>
@@ -70,7 +66,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
-  background-color: lightgrey;
+  background-color: #080420;
   .brand {
     display: flex;
     align-items: center;
@@ -99,7 +95,7 @@ const Container = styled.div`
       }
     }
     .contact {
-      background-color: black;
+      background-color: #ffffff34;
       min-height: 5rem;
       cursor: pointer;
       width: 90%;
@@ -117,7 +113,6 @@ const Container = styled.div`
       .username {
         h3 {
           color: white;
-          font-size: 20px;
         }
       }
     }
@@ -127,7 +122,7 @@ const Container = styled.div`
   }
 
   .current-user {
-    background-color: white;
+    background-color: #0d0d30;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +136,6 @@ const Container = styled.div`
     .username {
       h2 {
         color: white;
-        font-size: 20px;
       }
     }
     @media screen and (min-width: 720px) and (max-width: 1080px) {

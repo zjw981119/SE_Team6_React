@@ -88,7 +88,7 @@ export default function ChatContainer({ currentChat, socket }) {
                                     message.fromSelf ? "sended" : "recieved"
                                 }`}
                             >
-                                <div className="content" style={{backgroundColor: "black", color: "white"}}>
+                                <div className="content ">
                                     <p>{message.message}</p>
                                 </div>
                             </div>
@@ -106,7 +106,6 @@ const Container = styled.div`
   grid-template-rows: 10% 80% 10%;
   gap: 0.1rem;
   overflow: hidden;
-  background-color: white;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     grid-template-rows: 15% 70% 15%;
   }
