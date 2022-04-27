@@ -9,7 +9,11 @@ export default function Welcome() {
     }, []);
   return (
     <Container>
-      <h1 style={{color: "black", fontSize: "20px"}}>Please select a chat on the left to Start messaging.</h1>
+
+        <div className="welcome-container">
+          Please select another user on the left to begin chatting.
+        </div>
+
     </Container>
   );
 }
@@ -26,4 +30,15 @@ const Container = styled.div`
   span {
     color: #4e0eff;
   }
+
+  .welcome-container {
+    padding: 1.5rem;
+    text-align: center;
+    display:table;
+    width:100%;
+    height:auto;
+    color:#000000;  
+    font-size: 1.5rem;
+  }
+
 `;

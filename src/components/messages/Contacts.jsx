@@ -53,7 +53,9 @@ export default function Contacts({ contacts, changeChat }) {
               );
             })}
           </div>
-          <div className="current-user" style={{backgroundColor: "grey"}}>
+
+          <div className="current-user" style={{backgroundColor: "#AAB8C2"}}>
+
             <div className="avatar">
               <img src={`../images/${userName.username}.jpg`}
                    className="ttr-tuit-avatar-logo rounded-circle"/>
@@ -70,7 +72,9 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
-  background-color: lightgrey;
+
+  background-color: #E1E8ED;
+
   .brand {
     display: flex;
     align-items: center;
@@ -99,8 +103,10 @@ const Container = styled.div`
       }
     }
     .contact {
-      background-color: black;
-      min-height: 5rem;
+
+      background-color: #AAB8C2;
+      min-height: 2rem;
+
       cursor: pointer;
       width: 90%;
       border-radius: 0.2rem;
@@ -111,7 +117,9 @@ const Container = styled.div`
       transition: 0.5s ease-in-out;
       .avatar {
         img {
-          height: 3rem;
+
+          height: 1rem;
+
         }
       }
       .username {
@@ -122,7 +130,9 @@ const Container = styled.div`
       }
     }
     .selected {
-      background-color: #9a86f3;
+
+      background-color: #1DA1F2;
+
     }
   }
 

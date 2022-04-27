@@ -98,6 +98,6 @@ const Container = styled.div`
       grid-template-columns: 35% 65%;
     }
   }
-`;
 
+`;
 

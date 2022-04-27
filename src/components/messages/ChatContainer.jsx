@@ -88,7 +88,9 @@ export default function ChatContainer({ currentChat, socket }) {
                                     message.fromSelf ? "sended" : "recieved"
                                 }`}
                             >
-                                <div className="content" style={{backgroundColor: "black", color: "white"}}>
+
+                                <div className="content" >
+
                                     <p>{message.message}</p>
                                 </div>
                             </div>
@@ -114,7 +116,9 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
+
+    padding: 0 2 rem;
+
     .user-details {
       display: flex;
       align-items: center;
@@ -132,7 +136,9 @@ const Container = styled.div`
     }
   }
   .chat-messages {
-    padding: 1rem 2rem;
+
+    padding: 1rem 1rem;
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -140,7 +146,9 @@ const Container = styled.div`
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
-        background-color: #ffffff39;
+
+        background-color: #ffffff;
+
         width: 0.1rem;
         border-radius: 1rem;
       }
@@ -149,12 +157,16 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       .content {
-        max-width: 40%;
+
+        max-width: 60%;
         overflow-wrap: break-word;
-        padding: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0px;
         font-size: 1.1rem;
         border-radius: 1rem;
-        color: #d1d1d1;
+
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
         }
@@ -162,14 +174,18 @@ const Container = styled.div`
     }
     .sended {
       justify-content: flex-end;
+      
+      color:white;
       .content {
-        background-color: #4f04ff21;
+        background-color: #1DA1F2;
       }
     }
     .recieved {
+      color:black;
       justify-content: flex-start;
       .content {
-        background-color: #9900ff20;
+        background-color: #E1E8ED;
+
       }
     }
   }
