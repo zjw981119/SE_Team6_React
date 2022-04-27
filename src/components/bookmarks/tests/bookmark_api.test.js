@@ -12,7 +12,7 @@ import * as bookmarkService from "../../../services/bookmarks-service";
 // }
 
 test("bookmark component renders", () => {
-  bookmarkService.findAllTuitsBookmarkedByUser("me").then((tuits) => {
+  return bookmarkService.findAllTuitsBookmarkedByUser("624604ca22fb564f3f16d64f").then((tuits) => {
     console.log(tuits);
     render(
       <>
