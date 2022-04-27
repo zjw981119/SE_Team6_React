@@ -33,10 +33,12 @@ export default function ChatInput({ handleSendMsg }) {
           {showEmojiPicker && <Picker onEmojiClick={handleEmojiClick} />}
         </div>
       </div>
+
       <form className="input-container" onSubmit={(event) => sendChat(event)} style={{backgroundColor: "#F5F8FA"}}>
         <input
           type="text"
           placeholder="Type your message here"
+
           onChange={(e) => setMsg(e.target.value)}
           value={msg}
         />
@@ -53,7 +55,9 @@ const Container = styled.div`
   align-items: center;
   grid-template-columns: 5% 95%;
   padding: 0 2rem;
+
   background-color: #E1E8ED;
+
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;
@@ -61,19 +65,24 @@ const Container = styled.div`
   .button-container {
     display: flex;
     align-items: center;
+
     gap: .5rem;
+
     .emoji {
       position: relative;
       svg {
         font-size: 1.5rem;
+
         color: #1DA1F2;
         cursor: pointer;
         position: relative;
         left:-10px
+
       }
       .emoji-picker-react {
         position: absolute;
         top: -350px;
+
         background-color: #F5F8FA;
         box-shadow: 0 5px 10px #1DA1F2;
         border-color: #1DA1F2;
@@ -82,6 +91,7 @@ const Container = styled.div`
           width: 5px;
           &-thumb {
             background-color: #F5F8FA;
+
           }
         }
         .emoji-categories {
@@ -91,10 +101,12 @@ const Container = styled.div`
         }
         .emoji-search {
           background-color: transparent;
+
           border-color: #1DA1F2;
         }
         .emoji-group:before {
           background-color: #F5F8FA;
+
         }
       }
     }
@@ -105,7 +117,9 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     gap: 2rem;
+
     background-color: #000000;
+
     input {
       width: 90%;
       height: 60%;
@@ -116,7 +130,9 @@ const Container = styled.div`
       font-size: 1.2rem;
 
       &::selection {
+
         background-color: #1DA1F2;
+
       }
       &:focus {
         outline: none;
@@ -128,12 +144,16 @@ const Container = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+
       background-color: #1DA1F2;
+
       border: none;
       @media screen and (min-width: 720px) and (max-width: 1080px) {
         padding: 0.3rem 1rem;
         svg {
+
           font-size: 0rem;
+
         }
       }
       svg {

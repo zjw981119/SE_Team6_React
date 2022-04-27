@@ -88,7 +88,9 @@ export default function ChatContainer({ currentChat, socket }) {
                                     message.fromSelf ? "sended" : "recieved"
                                 }`}
                             >
+
                                 <div className="content" >
+
                                     <p>{message.message}</p>
                                 </div>
                             </div>
@@ -114,7 +116,9 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 0 2 rem;
+
     .user-details {
       display: flex;
       align-items: center;
@@ -132,7 +136,9 @@ const Container = styled.div`
     }
   }
   .chat-messages {
+
     padding: 1rem 1rem;
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -140,7 +146,9 @@ const Container = styled.div`
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
+
         background-color: #ffffff;
+
         width: 0.1rem;
         border-radius: 1rem;
       }
@@ -149,6 +157,7 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       .content {
+
         max-width: 60%;
         overflow-wrap: break-word;
         padding-left: 1rem;
@@ -157,6 +166,7 @@ const Container = styled.div`
         padding-bottom: 0px;
         font-size: 1.1rem;
         border-radius: 1rem;
+
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
         }
@@ -164,6 +174,7 @@ const Container = styled.div`
     }
     .sended {
       justify-content: flex-end;
+      
       color:white;
       .content {
         background-color: #1DA1F2;
@@ -174,6 +185,7 @@ const Container = styled.div`
       justify-content: flex-start;
       .content {
         background-color: #E1E8ED;
+
       }
     }
   }
